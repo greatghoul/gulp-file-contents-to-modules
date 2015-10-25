@@ -37,7 +37,7 @@ module.exports = function (dest) {
     try {
 
       first = first || file;
-      var id = file.path.replace(file.base, '').split('\\').join('__');   // 'foo/bar/bax.txt' => 'foo:bar:baz.txt'
+      var id = file.path.replace(file.base, '').replace(/\/\//g,'_').replace(/-/g,'_');   // 'foo/bar/baz-meh.txt' => 'foo__bar__baz_meh'
 	  // now I added the below line which removed the DOT extension
 	  id = 'export var ' + id.split('.').slice(0, -1).join('.'); 
       var contents = file.contents.toString("utf-8");

@@ -1,6 +1,6 @@
 {
   "name": "gulp-file-contents-to-modules",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Put some files, output ES6 exports of their contents.",
   "main": "index.js",
   "repository": "yairEO/gulp-file-contents-to-modules",
