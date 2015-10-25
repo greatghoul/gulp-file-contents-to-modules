@@ -38,12 +38,12 @@ module.exports = function (dest) {
 
       first = first || file;
       var id = file.path.replace(file.base, '').replace(/\/\//g,'_').replace(/-/g,'_');   // 'foo/bar/baz-meh.txt' => 'foo__bar__baz_meh'
-	  // now I added the below line which removed the DOT extension
-	  id = 'export var ' + id.split('.').slice(0, -1).join('.'); 
+      // now I added the below line which removed the DOT extension
+      id = 'export var ' + id.split('.').slice(0, -1).join('.'); 
       var contents = file.contents.toString("utf-8");
-	  
-	  output += id + ' = ' + JSON.stringify(contents, null, 1) + ';\n'
-		
+      
+      output += id + ' = ' + JSON.stringify(contents, null, 1) + ';\n'
+        
       //
       // Create file which will "host" the templates' exports.
       //
@@ -51,7 +51,7 @@ module.exports = function (dest) {
         base: first.base,
         cwd: first.cwd,
         path: path.join(file.base, dest),
-		contents: new Buffer(output)
+        contents: new Buffer(output)
       });
 
       this.push(out);
