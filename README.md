@@ -21,20 +21,20 @@ Given a nested directory of files like so,
 
 ```
 my-files
-├── bar.txt
-├── foo.txt
+├── bar.html
+├── foo.html
 └── my-folder
-    └── baz.txt
+    └── baz.html
 ```
 
 **gulp-file-contents-to-json** reads in each file, and outputs a _single JSON file_ representing the _contents_ of each file within the folder. When a directory is encountered, it becomes a nested object within the JSON blob, like so:
 
 ```json
 {
-  "bar.txt": "Content of bar.",
-  "foo.txt": "Contents of foo.",
+  "bar.html": "Content of bar.",
+  "foo.html": "Contents of foo.",
   "my-folder": {
-    "baz.txt": "Contents of baz."
+    "baz.html": "Contents of baz."
   }
 }
 ```
@@ -46,11 +46,11 @@ For example, to read in the contents of the `my-files` folder and output `dist/c
 
 ```javascript
 var gulp    = require('gulp');
-var fc2json = require('gulp-file-contents-to-json');
+var fc2json = require('gulp-file-contents-to-modules');
 
-gulp.task('create-json-blob', function() {
-  gulp.src('my-files/**/*')
-      .pipe(fc2json('contents.json'))
+gulp.task('default', function() {
+  gulp.src('templates/**/*')
+      .pipe(fc2json('templates.js'))
       .pipe(gulp.dest('./dist/'));
 });
 ```
@@ -58,14 +58,8 @@ gulp.task('create-json-blob', function() {
 Simply run the following and you're done:
 
 ```shell
-$ gulp create-json-blob
+$ gulp
 ```
-
-Author
-----------
-| ![twitter/brianmgonzalez](http://gravatar.com/avatar/f6363fe1d9aadb1c3f07ba7867f0e854?s=70](http://twitter.com/brianmgonzalez "Follow @brianmgonzalez on Twitter") |
-|---|
-| [Brian Gonzalez](http://briangonzalez.org) |
 
 
 License

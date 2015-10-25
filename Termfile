@@ -1,5 +1,5 @@
 root:
-  ~/code/github/gulp-file-contents-to-json
+  ~/code/github/gulp-file-contents-to-modules
 
 commands:
   git:       git st

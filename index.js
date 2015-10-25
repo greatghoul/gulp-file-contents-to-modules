@@ -3,14 +3,14 @@
 var through2 = require('through2');
 var gutil = require('gulp-util');
 var path = require('path');
+var fs = require('fs');
 
-var nconf = require('nconf');
-nconf.file({ file: 'store.json' });
 
-var PLUGIN_NAME = 'gulp-file-contents-to-json';
+var PLUGIN_NAME = 'gulp-file-contents-to-modules';
 
 module.exports = function (dest) {
 
+  var output = '';
   var first = null;
   var guid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random()*16|0,v=c==='x'?r:r&0x3|0x8;return v.toString(16);
@@ -36,22 +36,22 @@ module.exports = function (dest) {
 
     try {
 
-      //
-      // Use nconf to create a json object of our files.
-      //
       first = first || file;
-      var id = file.path.replace(file.base, '').split('/').join(':');   // 'foo/bar/bax.txt' => 'foo:bar:baz.txt'
+      var id = file.path.replace(file.base, '').split('\\').join('__');   // 'foo/bar/bax.txt' => 'foo:bar:baz.txt'
+	  // now I added the below line which removed the DOT extension
+	  id = 'export var ' + id.split('.').slice(0, -1).join('.'); 
       var contents = file.contents.toString("utf-8");
-      nconf.set(guid + ':' + id, contents);
-
+	  
+	  output += id + ' = ' + JSON.stringify(contents, null, 1) + ';\n'
+		
       //
-      // Create file which will become the JSON blob.
+      // Create file which will "host" the templates' exports.
       //
       var out = new gutil.File({
         base: first.base,
         cwd: first.cwd,
         path: path.join(file.base, dest),
-        contents: new Buffer(JSON.stringify(nconf.get(guid), null, 2))
+		contents: new Buffer(output)
       });
 
       this.push(out);

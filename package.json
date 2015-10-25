@@ -1,16 +1,15 @@
 {
-  "name": "gulp-file-contents-to-json",
+  "name": "gulp-file-contents-to-modules",
   "version": "0.1.2",
-  "description": "Slurp in some files, output a JSON representation of their contents.",
+  "description": "Slurp in some files, output strings as ES6 modules",
   "main": "index.js",
-  "repository": "briangonzalez/gulp-file-contents-to-json",
+  "repository": "yairEO/gulp-file-contents-to-modules",
   "scripts": {
     "test": "mocha"
   },
   "author": {
-    "name": "Brian Gonzalez",
-    "email": "me@briangonzalez.org",
-    "url": "http://briangonzalez.org"
+    "name": "Yair Even-Or",
+    "email": "vsync.design@gmail.com"
   },
   "license": "MIT",
   "devDependencies": {
