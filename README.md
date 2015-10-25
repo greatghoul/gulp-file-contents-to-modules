@@ -3,7 +3,9 @@
 ================================================
 
 Input some files, output ES6 exports of their contents.
+Very helpful when working with HTML template files, so each of them could be imported using ES6 syntax.
 
+I recommend using [rollup](https://github.com/rollup) for ES6 modules bundling.
 
 Installation
 ------------
