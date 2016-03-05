@@ -47,7 +47,10 @@ var fc2modules = require('gulp-file-contents-to-modules');
 
 gulp.task('default', function() {
   gulp.src('templates/**/*')
-      .pipe(fc2modules('templates.js'))
+      .pipe(fc2modules({
+            compile : true, // 'true' (use '_.template') or pass any other string to wrap the template string with
+            minify  : true, // remove new lines and whitespaces between tags
+      })
       .pipe(gulp.dest('./dist/'));
 });
 ```
